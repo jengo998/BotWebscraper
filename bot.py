@@ -71,4 +71,10 @@ async def on_message(message):
             await message.channel.send(embed=embed_content)
 
 
+@client.event
+async def on_error(event, *args, **kwargs):
+    if event == 'on_message':
+        channel = client.get_channel(id=866225413930876940)
+        await channel.send("Oof, try again.")
+
 client.run(TOKEN)

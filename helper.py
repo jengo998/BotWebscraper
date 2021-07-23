@@ -1,4 +1,5 @@
 from collections import namedtuple
+import discord
 
 def parse_string(content: str) -> dict:
     """Takes a string of search queries, parses them, and return a dict payload"""
@@ -20,6 +21,10 @@ def parse_string(content: str) -> dict:
 
     if str_list[0].lower() == "high" or str_list[0].lower() == "highest":
         payload.update({"_sop": "16"})
+
+    # Means that payload is empty
+    if not payload:
+        raise discord.DiscordException
 
     payload.update({"_nkw": " ".join(str_list[1:])})
 
